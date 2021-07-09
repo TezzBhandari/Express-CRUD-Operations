@@ -7,10 +7,16 @@ const {
   updateDish,
   deleteDish,
   addComment,
+  getAllComment,
+  deleteAllComment,
+  getComment,
+  updateComment,
+  deleteComment,
 } = require('../controllers/dishes');
 
 const router = express.Router();
 
+// CRUD OPERATIONS ON DISHES
 router
   .route('/')
   .get(getAllDishes)
@@ -19,11 +25,11 @@ router
       success: true,
       msg: 'PUT operation is not supported on /dishes.',
     });
-  });
+  })
+  .delete(deleteAll)
+  .post(addDish);
 
-router.post('/add', addDish);
-router.delete('/all', deleteAll);
-
+// CRUD OPERATIONS ON SPECIFIC DISH
 router
   .route('/:id')
   .get(getDish)
@@ -36,6 +42,29 @@ router
   .put(updateDish)
   .delete(deleteDish);
 
-router.route('/comment/add/:id').post(addComment);
+// CRUD Opeartions on Sub Documents routes
+router
+  .route('/:dishId/comment')
+  .post(addComment)
+  .get(getAllComment)
+  .put((req, res, next) => {
+    res.status(400).json({
+      success: false,
+      msg: 'PUT Operations is not supported on this route',
+    });
+  })
+  .delete(deleteAllComment);
+
+router
+  .route('/:dishId/comment/:commentId')
+  .get(getComment)
+  .post((req, res) => {
+    res.status(400).json({
+      success: false,
+      msg: 'POST operatin not supported in this route.',
+    });
+  })
+  .put(updateComment)
+  .delete(deleteComment);
 
 module.exports = router;

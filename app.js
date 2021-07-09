@@ -39,8 +39,8 @@ app.use('/dishes', route);
 // Error Handling Function
 app.use((error, req, res, next) => {
   res.status(error.status || 500).json({
+    status: error.status || 500,
     message: error.message,
     stack: error.stack,
-    status: error.status,
   });
 });
