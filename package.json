@@ -1,0 +1,22 @@
+{
+  "name": "node-mongodb",
+  "version": "1.0.0",
+  "description": "Node Mongo Test Example",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "author": "TezzBhandari",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-errors": "^1.7.2",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.13.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.10"
+  }
+}
