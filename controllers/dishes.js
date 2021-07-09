@@ -73,7 +73,7 @@ const deleteDish = async (req, res, next) => {
 const addComment = async (req, res, next) => {
   try {
     const result = await Dish.findByIdAndUpdate(
-      req.params.id,
+      req.params.dishId,
       {
         $push: req.body,
       },
@@ -81,13 +81,15 @@ const addComment = async (req, res, next) => {
     );
     res.status(200).json({
       success: true,
-      message: 'Successfully added a comment',
+      message: `Successfully added a comment on Dish ${req.params.dishId}`,
       response: result,
     });
   } catch (err) {
     next(err);
   }
 };
+
+// CRUD Operations on Sub Document
 
 module.exports = {
   getAllDishes,
