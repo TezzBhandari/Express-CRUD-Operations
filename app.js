@@ -1,13 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
+const dotenv = require('dotenv');
 const route = require('./routes/route');
 var mongoose = require('mongoose');
 const { request } = require('express');
 
 const app = express();
+dotenv.config();
 //Set up default mongoose connection
-const dbUri =
-  'mongodb+srv://m001-student:ronaldo18@@mflix.md7qc.mongodb.net/Mongoose?retryWrites=true&w=majority';
+const dbUri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@mflix.md7qc.mongodb.net/Mongoose?retryWrites=true&w=majority`;
 
 const connectDatabse = async () => {
   try {
